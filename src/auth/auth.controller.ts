@@ -14,10 +14,14 @@ import { GetCurrentUser, GetCurrentUserId, Public } from '../common/decorators';
 import { AtGuard, RtGuard } from '../common/guards';
 import { AuthDto } from './dto';
 import { Tokens } from './types';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private configService: ConfigService,
+  ) {}
 
   @Public()
   @Post('/local/signup')
@@ -48,5 +52,12 @@ export class AuthController {
     @GetCurrentUser('refreshToken') refreshToken: string,
   ) {
     return this.authService.refreshTokens(userId, refreshToken);
+  }
+
+  @Public()
+  @Post('/test')
+  @HttpCode(HttpStatus.OK)
+  test() {
+    return this.configService.get('TEST');
   }
 }
