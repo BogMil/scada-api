@@ -16,6 +16,7 @@ const bycipt = require("bcrypt");
 const jwt_1 = require("@nestjs/jwt");
 const constants_1 = require("../common/constants");
 const config_1 = require("@nestjs/config");
+const client_1 = require("../generated/client");
 let AuthService = class AuthService {
     constructor(prisma, jwtService, config) {
         this.prisma = prisma;
