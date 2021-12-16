@@ -18,7 +18,7 @@ let RtStrategy = class RtStrategy extends (0, passport_1.PassportStrategy)(passp
     constructor(config) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: config.get('RT_SECRET'),
+            secretOrKey: "AT",
             passReqToCallback: true,
         });
     }
