@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated/client"
 }
 
 datasource db {
@@ -11,28 +12,28 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email String @unique
-  hash String
-  isLoggedOut Boolean @default(true)
+  email         String         @unique
+  hash          String
+  isLoggedOut   Boolean        @default(true)
   refreshTokens RefreshToken[]
 
   @@map("users")
 }
 
-model RefreshToken{
-  id Int @id @default(autoincrement())
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  value String
+  value     String
   isRevoked Boolean @default(false)
 
-  userId Int 
-  user User @relation(fields: [userId], references: [id])
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 
   @@map("refresh_tokens")
 }

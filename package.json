@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "nest build && mkdirp ./dist/generated & mkdirp ./dist/generated/client & cp -R src/generated/client dist/generated/",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -18,7 +18,9 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "cp": "mkdirp ./dist/generated & mkdirp ./dist/generated/client",
+    "p": "cp -R src/generated/client dist/generated/client/"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
