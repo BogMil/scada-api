@@ -79,7 +79,7 @@ __decorate([
 ], AuthController.prototype, "refreshTokens", null);
 __decorate([
     (0, decorators_1.Public)(),
-    (0, common_1.Post)('/test'),
+    (0, common_1.Get)('/test'),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

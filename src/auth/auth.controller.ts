@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
   Post,
@@ -21,7 +22,7 @@ export class AuthController {
   constructor(
     private authService: AuthService,
     private configService: ConfigService,
-  ) {}
+  ) { }
 
   @Public()
   @Post('/local/signup')
@@ -55,7 +56,7 @@ export class AuthController {
   }
 
   @Public()
-  @Post('/test')
+  @Get('/test')
   @HttpCode(HttpStatus.OK)
   test() {
     return this.configService.get('TEST');
