@@ -4,9 +4,9 @@ import { AuthDto } from './dto';
 import * as bycipt from 'bcrypt';
 import { JwtPayload, Tokens } from './types';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '@prisma/client';
 import { AT_DURATION, RT_DURATION } from 'src/common/constants';
 import { ConfigService } from '@nestjs/config';
+import { User } from 'src/generated/client';
 
 @Injectable()
 export class AuthService {
