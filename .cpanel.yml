@@ -1,4 +1,4 @@
 ---
 deployment:
   tasks:
-    - mkdir ./testera
+    - mkdir ../testera
