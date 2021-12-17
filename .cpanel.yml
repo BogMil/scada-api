@@ -1,4 +1,4 @@
 ---
 deployment:
   tasks:
-    - pwd
+    - mkdir ./testera
