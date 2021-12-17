@@ -7,10 +7,9 @@ import { JwtPayload } from '../types';
 @Injectable()
 export class AtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(config: ConfigService) {
-    // let x = config.get<string>('AT_SECRET');
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: "AT",
+      secretOrKey: config.get<string>('AT_SECRET'),
     });
   }
 

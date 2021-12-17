@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
 const core_1 = require("@nestjs/core");
 const auth_module_1 = require("./auth/auth.module");
 const guards_1 = require("./common/guards");
@@ -16,7 +17,7 @@ let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, prisma_module_1.PrismaModule],
+        imports: [auth_module_1.AuthModule, prisma_module_1.PrismaModule, config_1.ConfigModule.forRoot({ isGlobal: true })],
         providers: [{ provide: core_1.APP_GUARD, useClass: guards_1.AtGuard }],
     })
 ], AppModule);

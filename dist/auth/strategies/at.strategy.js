@@ -18,7 +18,7 @@ let AtStrategy = class AtStrategy extends (0, passport_1.PassportStrategy)(passp
     constructor(config) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: "AT",
+            secretOrKey: config.get('AT_SECRET'),
         });
     }
     validate(payload) {
