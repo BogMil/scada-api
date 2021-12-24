@@ -113,7 +113,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\mibo2904\\source\\repos\\scada-api\\src\\generated\\client",
+      "value": "C:\\Users\\Milan\\source\\repos\\scada-api\\src\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -133,7 +133,8 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": "..\\..\\..\\.env",
+    "schemaEnvPath": "..\\..\\..\\.env"
   },
   "relativePath": "..\\..\\..\\prisma",
   "clientVersion": "3.6.0",

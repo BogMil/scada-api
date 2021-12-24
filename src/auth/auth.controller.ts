@@ -5,24 +5,22 @@ import {
   HttpCode,
   HttpStatus,
   Post,
-  Req,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { Request } from 'express';
+
 import { AuthService } from './auth.service';
 import { GetCurrentUser, GetCurrentUserId, Public } from '../common/decorators';
-import { AtGuard, RtGuard } from '../common/guards';
 import { AuthDto } from './dto';
 import { Tokens } from './types';
 import { ConfigService } from '@nestjs/config';
+import { RtGuard } from 'src/common/guards';
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private authService: AuthService,
     private configService: ConfigService,
-  ) { }
+  ) {}
 
   @Public()
   @Post('/local/signup')
