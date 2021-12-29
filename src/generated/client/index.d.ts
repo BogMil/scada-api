@@ -3935,6 +3935,7 @@ export namespace Prisma {
   }
 
   export type RoleCreateInput = {
+    id: number
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
@@ -3942,7 +3943,7 @@ export namespace Prisma {
   }
 
   export type RoleUncheckedCreateInput = {
-    id?: number
+    id: number
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
@@ -3950,6 +3951,7 @@ export namespace Prisma {
   }
 
   export type RoleUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
@@ -3965,13 +3967,14 @@ export namespace Prisma {
   }
 
   export type RoleCreateManyInput = {
-    id?: number
+    id: number
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
   }
 
   export type RoleUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
@@ -4556,13 +4559,14 @@ export namespace Prisma {
   }
 
   export type RoleCreateWithoutUserInput = {
+    id: number
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
   }
 
   export type RoleUncheckedCreateWithoutUserInput = {
-    id?: number
+    id: number
     createdAt?: Date | string
     updatedAt?: Date | string
     name: string
@@ -4607,6 +4611,7 @@ export namespace Prisma {
   }
 
   export type RoleUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string

@@ -30,10 +30,12 @@ describe('RoleService', () => {
     ctx = mockCtx as unknown as Context;
   });
 
-  describe('create', () => {
+  describe('get all', () => {
     var res;
+    var role;
     beforeEach(async () => {
-      mockCtx.prisma.role.findMany.mockResolvedValue([await createRole()]);
+      role = await createRole();
+      mockCtx.prisma.role.findMany.mockResolvedValue([role]);
 
       const roleService = new RoleService(
         mockCtx.prisma as unknown as PrismaService,
@@ -42,30 +44,26 @@ describe('RoleService', () => {
       jest.resetModules();
     });
 
-    it('should call prisma.role.create', async () => {
+    it('should call prisma.role.findMany', async () => {
       expect(ctx.prisma.role.findMany).toBeCalled();
     });
 
-    // it('should call prisma.role.create with proper data', async () => {
-    //   expect(ctx.prisma.role.create).toBeCalledWith({
-    //     data: { name: 'new Role' },
-    //   });
-    // });
-
-    // it('should return id', async () => {
-    //   expect(res).toEqual(1);
-    // });
+    it('should return id', async () => {
+      expect(res).toEqual([role]);
+    });
   });
 
   describe('create', () => {
     var res;
+    var role;
     beforeEach(async () => {
-      mockCtx.prisma.role.create.mockResolvedValue(await createRole());
+      role = await createRole();
+      mockCtx.prisma.role.create.mockResolvedValue(role);
 
       const roleService = new RoleService(
         mockCtx.prisma as unknown as PrismaService,
       );
-      res = await roleService.create('new Role');
+      res = await roleService.create({ name: 'new Role', id: 1 });
       jest.resetModules();
     });
 
@@ -75,12 +73,12 @@ describe('RoleService', () => {
 
     it('should call prisma.role.create with proper data', async () => {
       expect(ctx.prisma.role.create).toBeCalledWith({
-        data: { name: 'new Role' },
+        data: { name: 'new Role', id: 1 },
       });
     });
 
-    it('should return id', async () => {
-      expect(res).toEqual(1);
+    it('should return new created object', async () => {
+      expect(res).toEqual(role.id);
     });
   });
 

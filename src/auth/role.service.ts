@@ -1,10 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { NotFoundInDbPrismaException } from 'src/common/exceptions/notfoundindb.exception';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { RoleDto } from './dto/role.dto';
 
 export interface RoleServiceInterface {
-  create: (name: string) => Promise<number>;
+  create: (dto: RoleDto) => Promise<number>;
   edit: (dto: RoleDto) => Promise<RoleDto>;
   delete: (id: number) => Promise<void>;
   all: () => Promise<RoleDto[]>;
@@ -18,34 +17,23 @@ export class RoleService implements RoleServiceInterface {
     return await this.prisma.role.findMany();
   }
 
-  async create(name: string): Promise<number> {
-    const role = await this.prisma.role.create({ data: { name: name } });
+  async create(dto: RoleDto): Promise<number> {
+    const role = await this.prisma.role.create({
+      data: { name: dto.name, id: dto.id },
+    });
     return role.id;
   }
 
   async edit(dto: RoleDto): Promise<RoleDto> {
-    try {
-      return await this.prisma.role.update({
-        where: { id: dto.id },
-        data: { name: dto.name },
-      });
-    } catch (e) {
-      if ((e.code = 'P2025'))
-        throw new NotFoundInDbPrismaException(e.meta.cause);
-
-      throw e;
-    }
+    return await this.prisma.role.update({
+      where: { id: dto.id },
+      data: { name: dto.name },
+    });
   }
 
   async delete(id: number) {
-    try {
-      await this.prisma.role.delete({
-        where: { id },
-      });
-    } catch (e) {
-      if ((e.code = 'P2025'))
-        throw new NotFoundInDbPrismaException(e.meta.cause);
-      throw e;
-    }
+    await this.prisma.role.delete({
+      where: { id },
+    });
   }
 }

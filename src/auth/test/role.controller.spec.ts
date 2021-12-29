@@ -60,7 +60,7 @@ describe('RoleController', () => {
     describe('when is called', () => {
       var response;
       beforeEach(async () => {
-        response = await roleController.createRole({ name: 'roleName' });
+        response = await roleController.createRole({ name: 'roleName', id: 1 });
       });
 
       it('should call service.create', () => {
@@ -68,7 +68,7 @@ describe('RoleController', () => {
       });
 
       it('should call service.create with proper data', () => {
-        expect(roleService.create).toBeCalledWith('roleName');
+        expect(roleService.create).toBeCalledWith({ name: 'roleName', id: 1 });
       });
 
       it('should return id', () => {

@@ -2,10 +2,12 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { PrismaExceptionInterceptor } from './common/interceptors/prismaexception.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalInterceptors(new PrismaExceptionInterceptor());
 
   const config = new DocumentBuilder()
     .setTitle('Scada API')
