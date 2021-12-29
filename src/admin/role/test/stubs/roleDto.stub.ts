@@ -1,4 +1,4 @@
-import { RoleDto } from 'src/auth/dto/role.dto';
+import { RoleDto } from 'src/admin/role/dto/role.dto';
 
 export const roleDtoStub = (): RoleDto => {
   return { name: 'role name', id: 1 };

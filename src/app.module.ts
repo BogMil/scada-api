@@ -1,4 +1,5 @@
-import { ClientModule } from './client/client.module';
+import { RoleModule } from './admin/role/role.module';
+import { ClientModule } from './admin/client/client.module';
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -10,6 +11,7 @@ import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
+    RoleModule,
     ClientModule,
     AuthModule,
     PrismaModule,

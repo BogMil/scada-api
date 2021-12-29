@@ -1,10 +1,10 @@
 import { ExecutionContext } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { AtGuard, RtGuard } from '../../common/guards';
-import { jwtPayloadStub } from './stubs';
+import { AtGuard, RtGuard } from '../../../common/guards';
+import { jwtPayloadStub } from '../../../auth/test/stubs';
 import { RoleController } from '../role.controller';
 import { RoleService } from '../role.service';
-import { roleDtoEditedStub, roleDtoStub } from './stubs/roleDto.stub';
+import { roleDtoEditedStub, roleDtoStub } from '../test/stubs';
 
 jest.mock('../role.service.ts');
 
