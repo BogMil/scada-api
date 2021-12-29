@@ -12,11 +12,11 @@ exports.Prisma = Prisma
 
 /**
  * Prisma Client JS version: 3.6.0
- * Query Engine version: dc520b92b1ebb2d28dc3161f9f82e875bd35d727
+ * Query Engine version: 8746e055198f517658c08a0c426c7eec87f5a85f
  */
 Prisma.prismaVersion = {
   client: "3.6.0",
-  engine: "dc520b92b1ebb2d28dc3161f9f82e875bd35d727"
+  engine: "8746e055198f517658c08a0c426c7eec87f5a85f"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -82,7 +82,8 @@ exports.Prisma.UserScalarFieldEnum = makeEnum({
   updatedAt: 'updatedAt',
   email: 'email',
   hash: 'hash',
-  isLoggedOut: 'isLoggedOut'
+  isLoggedOut: 'isLoggedOut',
+  roleId: 'roleId'
 });
 
 exports.Prisma.RefreshTokenScalarFieldEnum = makeEnum({
@@ -94,6 +95,13 @@ exports.Prisma.RefreshTokenScalarFieldEnum = makeEnum({
   userId: 'userId'
 });
 
+exports.Prisma.RoleScalarFieldEnum = makeEnum({
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name'
+});
+
 exports.Prisma.SortOrder = makeEnum({
   asc: 'asc',
   desc: 'desc'
@@ -102,7 +110,8 @@ exports.Prisma.SortOrder = makeEnum({
 
 exports.Prisma.ModelName = makeEnum({
   User: 'User',
-  RefreshToken: 'RefreshToken'
+  RefreshToken: 'RefreshToken',
+  Role: 'Role'
 });
 
 /**

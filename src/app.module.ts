@@ -1,3 +1,4 @@
+import { ClientModule } from './client/client.module';
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -9,6 +10,7 @@ import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
+    ClientModule,
     AuthModule,
     PrismaModule,
     ConfigModule.forRoot({ isGlobal: true }),

@@ -13,14 +13,17 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   email         String         @unique
   hash          String
   isLoggedOut   Boolean        @default(true)
   refreshTokens RefreshToken[]
+
+  roleId Int? 
+  Role   Role? @relation(fields: [roleId], references: [id])
 
   @@map("users")
 }
@@ -37,4 +40,15 @@ model RefreshToken {
   user   User @relation(fields: [userId], references: [id])
 
   @@map("refresh_tokens")
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String @unique
+
+  User User[]
+  @@map("roles")
 }
