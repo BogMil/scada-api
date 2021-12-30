@@ -4,7 +4,7 @@ import { AuthController } from '../auth.controller';
 import { AuthService } from '../auth.service';
 import { AtGuard, RtGuard } from '../../common/guards';
 import { Tokens } from '../types';
-import { authDtoStub, jwtPayloadStub } from './stubs';
+import { getAuthDtoStub, getJwtPayloadStub } from './stubs';
 import { assertTokensValidity } from './common';
 
 jest.mock('../auth.service.ts');
@@ -29,7 +29,7 @@ describe('AuthController', () => {
       .useValue({
         canActivate: (context: ExecutionContext) => {
           const req = context.switchToHttp().getRequest();
-          req.user = jwtPayloadStub();
+          req.user = getJwtPayloadStub();
           return true;
         },
       })
@@ -45,7 +45,7 @@ describe('AuthController', () => {
       let tokens: Tokens;
 
       beforeEach(async () => {
-        tokens = await authController.signupLocal(authDtoStub());
+        tokens = await authController.signupLocal(getAuthDtoStub());
       });
 
       it('should call authService.signupLocalAsync', () => {
@@ -53,7 +53,7 @@ describe('AuthController', () => {
       });
 
       it('should call authService.signupLocalAsync with received dto', () => {
-        expect(authService.signupLocalAsync).toBeCalledWith(authDtoStub());
+        expect(authService.signupLocalAsync).toBeCalledWith(getAuthDtoStub());
       });
 
       it('should return valid tokens', () => {
@@ -67,7 +67,7 @@ describe('AuthController', () => {
       let tokens;
 
       beforeEach(async () => {
-        tokens = await authController.signinLocal(authDtoStub());
+        tokens = await authController.signinLocal(getAuthDtoStub());
       });
 
       it('should call authService.signupLocalAsync', () => {
@@ -75,7 +75,7 @@ describe('AuthController', () => {
       });
 
       it('should call authService.signupLocalAsync with received dto', () => {
-        expect(authService.signinLocalAsync).toBeCalledWith(authDtoStub());
+        expect(authService.signinLocalAsync).toBeCalledWith(getAuthDtoStub());
       });
 
       it('should return valid tokens', () => {
@@ -89,7 +89,7 @@ describe('AuthController', () => {
       let tokens;
 
       beforeEach(async () => {
-        tokens = await authController.refreshTokens(jwtPayloadStub().sub);
+        tokens = await authController.refreshTokens(getJwtPayloadStub().sub);
       });
 
       it('should call authService.refreshTokensAsync', () => {
@@ -98,7 +98,7 @@ describe('AuthController', () => {
 
       it('should call authService.refreshTokensAsync with user id from jwtPayload', () => {
         expect(authService.refreshTokensAsync).toBeCalledWith(
-          jwtPayloadStub().sub,
+          getJwtPayloadStub().sub,
         );
       });
 
@@ -113,7 +113,7 @@ describe('AuthController', () => {
       let tokens;
 
       beforeEach(async () => {
-        tokens = await authController.logout(jwtPayloadStub().sub);
+        tokens = await authController.logout(getJwtPayloadStub().sub);
       });
 
       it('should call authService.logoutAsync', () => {
@@ -121,7 +121,7 @@ describe('AuthController', () => {
       });
 
       it('should call authService.logoutAsync with user id from jwtPayload', () => {
-        expect(authService.logoutAsync).toBeCalledWith(jwtPayloadStub().sub);
+        expect(authService.logoutAsync).toBeCalledWith(getJwtPayloadStub().sub);
       });
     });
   });

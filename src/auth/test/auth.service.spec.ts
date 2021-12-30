@@ -2,7 +2,7 @@ import { ForbiddenException } from '@nestjs/common';
 import { AuthService } from '../auth.service';
 import { JwtService } from '@nestjs/jwt';
 import { Tokens } from '../types';
-import { authDtoStub, jwtPayloadStub } from './stubs';
+import { getAuthDtoStub, getJwtPayloadStub } from './stubs';
 
 import { MockContext, Context, createMockContext } from '../../context';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -11,7 +11,7 @@ import * as bycript from 'bcrypt';
 import { assertTokensValidity } from './common';
 
 const createUser = async () => {
-  const hash = await bycript.hash(authDtoStub().password, 10);
+  const hash = await bycript.hash(getAuthDtoStub().password, 10);
   return {
     id: 1,
     email: 'asd',
@@ -51,7 +51,7 @@ describe('AuthService', () => {
           .spyOn(authService, 'hashData')
           .mockImplementation((_) => createdUser.hash);
 
-        tokens = await authService.signupLocalAsync(authDtoStub());
+        tokens = await authService.signupLocalAsync(getAuthDtoStub());
 
         jest.resetModules();
       });
@@ -112,7 +112,7 @@ describe('AuthService', () => {
           .spyOn(authService, 'hashData')
           .mockImplementation((_) => createdUser.hash);
 
-        tokens = await authService.signinLocalAsync(authDtoStub());
+        tokens = await authService.signinLocalAsync(getAuthDtoStub());
 
         jest.resetModules();
       });
@@ -123,7 +123,7 @@ describe('AuthService', () => {
 
       it('should call prisma.user.findUnique with correct data', async () => {
         expect(ctx.prisma.user.findUnique).toBeCalledWith({
-          where: { email: authDtoStub().email },
+          where: { email: getAuthDtoStub().email },
         });
       });
 

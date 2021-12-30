@@ -83,7 +83,9 @@ exports.Prisma.UserScalarFieldEnum = makeEnum({
   email: 'email',
   hash: 'hash',
   isLoggedOut: 'isLoggedOut',
-  roleId: 'roleId'
+  isActive: 'isActive',
+  roleId: 'roleId',
+  clientId: 'clientId'
 });
 
 exports.Prisma.RefreshTokenScalarFieldEnum = makeEnum({
@@ -102,6 +104,14 @@ exports.Prisma.RoleScalarFieldEnum = makeEnum({
   name: 'name'
 });
 
+exports.Prisma.ClientScalarFieldEnum = makeEnum({
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name',
+  apiKey: 'apiKey'
+});
+
 exports.Prisma.SortOrder = makeEnum({
   asc: 'asc',
   desc: 'desc'
@@ -111,7 +121,8 @@ exports.Prisma.SortOrder = makeEnum({
 exports.Prisma.ModelName = makeEnum({
   User: 'User',
   RefreshToken: 'RefreshToken',
-  Role: 'Role'
+  Role: 'Role',
+  Client: 'Client'
 });
 
 /**

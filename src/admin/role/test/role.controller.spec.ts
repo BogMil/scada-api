@@ -1,10 +1,10 @@
 import { ExecutionContext } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { AtGuard, RtGuard } from '../../../common/guards';
-import { jwtPayloadStub } from '../../../auth/test/stubs';
+import { getJwtPayloadStub } from '../../../auth/test/stubs';
 import { RoleController } from '../role.controller';
 import { RoleService } from '../role.service';
-import { roleDtoEditedStub, roleDtoStub } from '../test/stubs';
+import { getRoleDtoEditedStub, getRoleDtoStub } from '../test/stubs';
 
 jest.mock('../role.service.ts');
 
@@ -28,7 +28,7 @@ describe('RoleController', () => {
       .useValue({
         canActivate: (context: ExecutionContext) => {
           const req = context.switchToHttp().getRequest();
-          req.user = jwtPayloadStub();
+          req.user = getJwtPayloadStub();
           return true;
         },
       })
@@ -51,7 +51,7 @@ describe('RoleController', () => {
       });
 
       it('should return id', () => {
-        expect(response).toEqual([roleDtoStub()]);
+        expect(response).toEqual([getRoleDtoStub()]);
       });
     });
   });
@@ -81,7 +81,7 @@ describe('RoleController', () => {
     describe('when is called', () => {
       var response;
       beforeEach(async () => {
-        var stub = roleDtoStub();
+        var stub = getRoleDtoStub();
         response = await roleController.editRole(stub.id, { name: stub.name });
       });
 
@@ -90,11 +90,11 @@ describe('RoleController', () => {
       });
 
       it('should call service.edit with proper data', () => {
-        expect(roleService.edit).toBeCalledWith(roleDtoStub());
+        expect(roleService.edit).toBeCalledWith(getRoleDtoStub());
       });
 
       it('should return updated data', () => {
-        expect(response).toEqual(roleDtoEditedStub());
+        expect(response).toEqual(getRoleDtoEditedStub());
       });
     });
   });
@@ -103,7 +103,7 @@ describe('RoleController', () => {
     describe('when is called', () => {
       var response;
       beforeEach(async () => {
-        response = await roleController.deleteRole(roleDtoStub().id);
+        response = await roleController.deleteRole(getRoleDtoStub().id);
       });
 
       it('should call service.delete', () => {
@@ -111,7 +111,7 @@ describe('RoleController', () => {
       });
 
       it('should call service.delete with proper data', () => {
-        expect(roleService.delete).toBeCalledWith(roleDtoStub().id);
+        expect(roleService.delete).toBeCalledWith(getRoleDtoStub().id);
       });
 
       it('should return undefined', () => {

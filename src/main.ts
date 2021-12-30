@@ -13,7 +13,6 @@ async function bootstrap() {
     .setTitle('Scada API')
     .setDescription('The Scada API description')
     .setVersion('1.0')
-    .addTag('scada')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

@@ -3,7 +3,7 @@ import { Tokens } from 'src/auth/types';
 import { AT_DURATION, RT_DURATION } from 'src/common/constants';
 require('dotenv').config({ debug: process.env.DEBUG });
 
-export const tokensStub = async (): Promise<Tokens> => {
+export const getTokensStub = async (): Promise<Tokens> => {
   const jwtService = new JwtService({});
   const at = await jwtService.sign(
     {},

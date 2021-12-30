@@ -1,6 +1,6 @@
 import { JwtPayload } from 'src/auth/types';
 
-export const jwtPayloadStub = (): JwtPayload => ({
+export const getJwtPayloadStub = (): JwtPayload => ({
   email: 'asd@gmail',
   sub: 123,
 });

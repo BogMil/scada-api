@@ -13,17 +13,21 @@ datasource db {
 }
 
 model User {
-  id            Int      @id @default(autoincrement())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   email         String         @unique
   hash          String
   isLoggedOut   Boolean        @default(true)
+  isActive      Boolean        @default(false)
   refreshTokens RefreshToken[]
 
-  roleId Int? 
-  Role   Role? @relation(fields: [roleId], references: [id])
+  roleId Int?
+  role   Role? @relation(map: "RoleRelation", fields: [roleId], references: [id])
+
+  clientId Int?    @unique
+  client   Client? @relation(map: "ClientRelation", fields: [clientId], references: [id])
 
   @@map("users")
 }
@@ -49,6 +53,21 @@ model Role {
 
   name String @unique
 
-  User User[]
+  user User[]
   @@map("roles")
 }
+
+model Client {
+  // payment history
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String @unique
+  apiKey String @unique
+
+  users User[]
+
+  @@map("clients")
+}
+
